@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="vi">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -59,6 +59,8 @@
 
         ul {
             padding-left: 20px;
+            margin-top: 5px;
+            margin-bottom: 10px;
         }
 
         hr {
@@ -135,6 +137,14 @@
             margin-bottom: 10px;
         }
 
+        .role-date {
+            font-size: 14px;
+            color: #666;
+            font-style: italic;
+            margin-bottom: 8px;
+            display: block;
+        }
+
         .contact-info {
             font-size: 15px;
             color: #555;
@@ -183,7 +193,6 @@
             </div>
             
             <!-- Avatar Image -->
-            <!-- CẬP NHẬT: Thay src="..." bên dưới bằng link ảnh chân dung của bạn -->
             <img src="images/dlinhxik.jpg" 
                  alt="Dieu Linh Nguyen" 
                  class="avatar">
@@ -196,30 +205,39 @@
             This website is a minimal academic-style page inspired by Jon Barron's layout.
         </p>
 
-        <!-- Projects Section (Thay thế cho Research) -->
-        <h2>Projects</h2>
+        <!-- Activities & Projects Section -->
+        <!-- Mình đổi tiêu đề thành Activities & Projects cho phù hợp hơn -->
+        <h2>Activities & Projects</h2>
         <hr>
 
-        <!-- Project 1 -->
+        <!-- ITEM 1: Activity (Đã thay thế Project 1 cũ) -->
         <div class="paper-item highlight">
             <div class="paper-img-wrapper">
-                <!-- CẬP NHẬT: Ảnh minh họa Portfolio -->
-                <img src="https://images.unsplash.com/photo-1486312338219-ce68d2c6f44d?q=80&w=320&h=180&auto=format&fit=crop" 
-                     alt="Portfolio Website" 
-                     class="paper-img">
+                <img src="image/fyu.jpg" 
+                     alt="Foreign Trade University Youth Union" 
+                     class="paper-img"
+                     onerror="this.onerror=null; this.src='https://placehold.co/320x180/1e3a8a/white?text=FTU+Union';">
             </div>
             <div class="paper-content">
-                <h3><a href="#">Portfolio Website</a></h3>
+                <h3><a href="#">Foreign Trade University Youth Union</a></h3>
+                
+                <!-- Dòng Role và Date -->
+                <span class="role-date">Organizing Committee Member | Sep 2023 - Dec 2024</span>
+                
                 <div class="paper-desc">
-                    A minimal research-style personal webpage inspired by Jon Barron. Built with HTML/CSS to showcase profile and academic works.
+                    <!-- Danh sách mô tả công việc -->
+                    <ul>
+                        <li>Coordinated Youth Union events; responsible for logistics, scheduling, and monitoring the progress of programs.</li>
+                        <li>Demonstrated strong teamwork skills, collaborating effectively with members to ensure smooth operations and deliver high-quality results.</li>
+                        <li>Enhanced time management and multitasking skills by strictly adhering to deadlines in a dynamic environment.</li>
+                    </ul>
                 </div>
             </div>
         </div>
 
-        <!-- Project 2 -->
+        <!-- ITEM 2: Giữ nguyên Project cũ (TIN314) -->
         <div class="paper-item">
             <div class="paper-img-wrapper">
-                <!-- CẬP NHẬT: Ảnh minh họa Coding -->
                 <img src="https://images.unsplash.com/photo-1555066931-4365d14bab8c?q=80&w=320&h=180&auto=format&fit=crop" 
                      alt="TIN314 Exercises" 
                      class="paper-img">
