@@ -1,40 +1,245 @@
 <!DOCTYPE html>
 <html lang="en">
+<!DOCTYPE html>
+<html lang="vi">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Dieu Linh Nguyen</title>
-  <link rel="stylesheet" href="style.css" />
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dieu Linh Nguyen - Portfolio</title>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            background: #ffffff;
+            color: #000;
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            max-width: 750px;
+            margin: 40px auto;
+            padding: 0 20px;
+        }
+
+        .header {
+            display: flex;
+            align-items: center; /* Căn giữa theo chiều dọc */
+            justify-content: space-between; /* Đẩy ảnh sang phải, text sang trái */
+            gap: 25px;
+            margin-bottom: 25px;
+        }
+
+        .avatar {
+            width: 140px;
+            height: 140px;
+            border-radius: 50%;
+            object-fit: cover;
+            /* Đảm bảo ảnh không bị co lại khi màn hình nhỏ */
+            flex-shrink: 0; 
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+
+        h1 {
+            font-size: 28px;
+            margin: 0 0 5px;
+            font-weight: 500;
+        }
+
+        h2 {
+            font-size: 22px;
+            margin-top: 35px;
+            margin-bottom: 15px;
+            font-weight: 600;
+        }
+
+        p, li {
+            font-size: 16px;
+            line-height: 1.6;
+            margin-bottom: 10px;
+        }
+
+        ul {
+            padding-left: 20px;
+        }
+
+        hr {
+            border: none;
+            border-top: 1px solid #f0f0f0;
+            margin: 25px 0;
+        }
+
+        a {
+            color: #0056d6;
+            text-decoration: none;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+
+        /* --- CSS BỔ SUNG ĐỂ GIỐNG ẢNH --- */
+
+        /* Phần Header Info: Để chứa tên và bio */
+        .header-info {
+            flex: 1; /* Chiếm phần còn lại của không gian */
+        }
+        
+        .header-links a {
+            margin-right: 10px;
+        }
+
+        /* CSS cho phần danh sách dự án (Projects) */
+        .paper-item {
+            display: grid;
+            grid-template-columns: 160px 1fr; /* Cột ảnh 160px, cột chữ tự co dãn */
+            gap: 20px;
+            padding: 20px 10px;
+            margin-bottom: 15px;
+            transition: background-color 0.3s;
+        }
+
+        /* Màu nền vàng nhạt cho mục nổi bật */
+        .paper-item.highlight {
+            background-color: #ffffd0;
+            box-shadow: 0 0 5px rgba(0,0,0,0.02);
+        }
+
+        .paper-item:hover {
+            background-color: #fcfcfc;
+        }
+        .paper-item.highlight:hover {
+            background-color: #ffffc0;
+        }
+
+        .paper-img {
+            width: 100%;
+            border-radius: 4px;
+            object-fit: cover;
+            /* Giả lập đổ bóng nhẹ cho ảnh thumbnail */
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            aspect-ratio: 16/9;
+        }
+
+        .paper-content h3 {
+            margin: 0 0 5px;
+            font-size: 17px;
+            font-weight: 600;
+        }
+
+        .paper-content h3 a {
+            color: #000; /* Tiêu đề thường màu đen */
+        }
+        
+        .paper-desc {
+            font-size: 15px;
+            color: #444;
+            margin-bottom: 10px;
+        }
+
+        .contact-info {
+            font-size: 15px;
+            color: #555;
+            margin-top: 10px;
+        }
+
+        /* Responsive cho Mobile */
+        @media (max-width: 600px) {
+            .header {
+                flex-direction: column-reverse; /* Đảo ngược để ảnh lên trên tên */
+                text-align: center;
+            }
+            
+            .header-info {
+                text-align: center;
+            }
+
+            .paper-item {
+                grid-template-columns: 1fr; /* Chuyển thành 1 cột */
+                text-align: left;
+            }
+            
+            .paper-img {
+                max-width: 200px; /* Giới hạn chiều rộng ảnh trên mobile */
+                margin-bottom: 10px;
+            }
+        }
+    </style>
 </head>
 <body>
-  <div class="container">
-    <div class="header">
-      <img src="images/dlinhxik.jpg" class="avatar" alt="Profile" />
-      <div>
-        <h1>Dieu Linh Nguyen</h1>
-        <p>Junior student at Foreign Trade University – Viet Nam</p>
-        <p>TIN314 • Coding • Web Development</p>
+
+    <div class="container">
+        
+        <!-- Header Section -->
+        <div class="header">
+            <div class="header-info">
+                <h1>Dieu Linh Nguyen</h1>
+                <p>
+                    Junior student at <strong>Foreign Trade University – Viet Nam</strong>.<br>
+                    TIN314 • Coding • Web Development
+                </p>
+                <div class="header-links">
+                    <a href="mailto:k62.2314740041@ftu.edu.vn">Email</a> / 
+                    <a href="https://facebook.com/linhh.linhh.05">Facebook</a>
+                </div>
+            </div>
+            
+            <!-- Avatar Image (Dùng placeholder màu xám vì chưa có ảnh thật) -->
+            <img src="https://ui-avatars.com/api/?name=Dieu+Linh&size=200&background=ffe4bc&color=5d4037" 
+                 alt="Dieu Linh Nguyen" 
+                 class="avatar">
+        </div>
+
+        <!-- About Me Section -->
+        <h2>About Me</h2>
         <p>
-          <a href="mailto:k62.2314740041@ftu.edu.vn">Email</a> ·
-          <a href="https://www.facebook.com/linhh.linhh.05" target="_blank">Facebook</a>
+            Hello! I'm Dieu Linh, a student interested in technology, coding, data, and digital tools. 
+            This website is a minimal academic-style page inspired by Jon Barron's layout.
         </p>
-      </div>
+
+        <!-- Projects Section (Thay thế cho Research) -->
+        <h2>Projects</h2>
+        <hr>
+
+        <!-- Project 1 -->
+        <div class="paper-item highlight">
+            <div class="paper-img-wrapper">
+                <!-- Ảnh đại diện dự án -->
+                <img src="https://placehold.co/320x180/e3f2fd/1565c0?text=Portfolio" 
+                     alt="Portfolio Website" 
+                     class="paper-img">
+            </div>
+            <div class="paper-content">
+                <h3><a href="#">Portfolio Website</a></h3>
+                <div class="paper-desc">
+                    A minimal research-style personal webpage inspired by Jon Barron. Built with HTML/CSS to showcase profile and academic works.
+                </div>
+            </div>
+        </div>
+
+        <!-- Project 2 -->
+        <div class="paper-item">
+            <div class="paper-img-wrapper">
+                <img src="https://placehold.co/320x180/f3e5f5/7b1fa2?text=TIN314" 
+                     alt="TIN314 Exercises" 
+                     class="paper-img">
+            </div>
+            <div class="paper-content">
+                <h3><a href="#">TIN314 Exercises</a></h3>
+                <div class="paper-desc">
+                    Collection of coding tasks and small tools developed during the TIN314 course. Focuses on web development fundamentals and data handling.
+                </div>
+            </div>
+        </div>
+
+        <!-- Contact Section -->
+        <h2>Contact</h2>
+        <p class="contact-info">
+            Feel free to reach out to me via email or social media.<br>
+            <strong>Email:</strong> <a href="mailto:k62.2314740041@ftu.edu.vn">k62.2314740041@ftu.edu.vn</a><br>
+            <strong>Facebook:</strong> <a href="https://facebook.com/linhh.linhh.05">facebook.com/linhh.linhh.05</a>
+        </p>
+
     </div>
 
-    <hr />
-
-    <h2>About Me</h2>
-    <p>Hello! I'm Dieu Linh, a student interested in technology, coding, data, and digital tools. This website is a minimal academic-style page inspired by Jon Barron's layout.</p>
-
-    <h2>Projects</h2>
-    <ul>
-      <li><b>Portfolio Website</b> — A minimal research-style personal webpage.</li>
-      <li><b>TIN314 Exercises</b> — Coding tasks and small tools.</li>
-    </ul>
-
-    <h2>Contact</h2>
-    <p>Email: <a href="mailto:k62.2314740041@ftu.edu.vn">k62.2314740041@ftu.edu.vn</a></p>
-    <p>Facebook: <a href="https://www.facebook.com/linhh.linhh.05" target="_blank">facebook.com/linhh.linhh.05</a></p>
-  </div>
 </body>
 </html>
