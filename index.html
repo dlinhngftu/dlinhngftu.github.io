@@ -4,259 +4,601 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Dieu Linh Nguyen - Portfolio</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" xintegrity="sha512-9usAa10IRO0HhonpyAIVpjrylPvoDwiPUiKdWk5t3PyolY1cOd4DSE0Ga+ri4AuTroPR5aQvXU9xC6qOPnzFeg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <style>
-        /* --- CSS CỦA BẠN (GIỮ NGUYÊN) --- */
+        /* --- Reset & Base Styles --- */
+        * { box-sizing: border-box; }
         body {
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-            background: #ffffff;
-            color: #000;
+            font-family: 'Segoe UI', 'Roboto', Helvetica, Arial, sans-serif;
+            /* Xóa màu nền xám cũ, thay bằng transparent để hiện nền pastel phía sau */
+            background-color: transparent; 
+            color: #444;
             margin: 0;
-            padding: 0;
+            line-height: 1.6;
+            padding-top: 70px;
+            position: relative; /* Để nội dung nằm trên nền */
+        }
+        a { text-decoration: none; color: inherit; transition: all 0.3s ease; }
+        ul { list-style: none; padding: 0; margin: 0; }
+        img { display: block; max-width: 100%; }
+
+        /* --- BACKGROUND TRỪU TƯỢNG (NEW) --- */
+        .abstract-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1; /* Nằm dưới cùng */
+            background-color: #fafafa; /* Màu nền gốc: Trắng kem rất nhạt */
+            overflow: hidden;
         }
 
-        .container {
-            max-width: 750px;
-            margin: 40px auto;
-            padding: 0 20px;
+        /* Định nghĩa chung cho các hình khối */
+        .shape {
+            position: absolute;
+            border-radius: 50%; /* Mặc định là hình tròn */
+            filter: blur(60px); /* Làm mờ mạnh để tạo cảm giác loang màu (Organic) */
+            opacity: 0.7; /* Độ trong suốt */
+            animation: floatShape 15s infinite alternate ease-in-out;
+            z-index: -1;
         }
 
-        .header {
+        /* Hình 1: Xanh Mint (Góc trên trái) */
+        .shape-1 {
+            top: -10%;
+            left: -5%;
+            width: 500px;
+            height: 500px;
+            background: #b2dfdb; /* Mint */
+            animation-duration: 25s;
+        }
+
+        /* Hình 2: Hồng Phấn (Góc dưới phải) */
+        .shape-2 {
+            bottom: -5%;
+            right: -10%;
+            width: 600px;
+            height: 600px;
+            background: #f8bbd0; /* Pink Pastel */
+            animation-duration: 20s;
+            animation-delay: -5s;
+        }
+
+        /* Hình 3: Tím Lavender (Giữa trái - Hình hơi vuông bo góc) */
+        .shape-3 {
+            top: 40%;
+            left: -10%;
+            width: 350px;
+            height: 350px;
+            background: #d1c4e9; /* Lavender */
+            border-radius: 40%; /* Bo góc ít hơn để tạo hình hơi vuông */
+            transform: rotate(45deg);
+            filter: blur(50px);
+            animation-duration: 22s;
+            animation-delay: -2s;
+        }
+
+        /* Hình 4: Vàng Kem (Góc trên phải) */
+        .shape-4 {
+            top: 10%;
+            right: 5%;
+            width: 300px;
+            height: 300px;
+            background: #fff9c4; /* Cream Yellow */
+            filter: blur(40px);
+            opacity: 0.6;
+            animation-duration: 18s;
+        }
+
+        /* Hình 5: Xanh Da Trời (Giữa màn hình - Nhỏ) */
+        .shape-5 {
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 200px;
+            height: 200px;
+            background: #bbdefb; /* Baby Blue */
+            opacity: 0.4;
+            filter: blur(40px);
+            animation-name: pulseShape;
+            animation-duration: 10s;
+        }
+
+        /* Animation Keyframes: Chuyển động trôi nhẹ */
+        @keyframes floatShape {
+            0% { transform: translate(0, 0) rotate(0deg); }
+            100% { transform: translate(30px, 40px) rotate(10deg); }
+        }
+
+        @keyframes pulseShape {
+            0% { transform: translate(-50%, -50%) scale(1); opacity: 0.4; }
+            100% { transform: translate(-50%, -50%) scale(1.2); opacity: 0.6; }
+        }
+
+        /* --- HEADER SECTION --- */
+        .top-header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 70px;
+            /* Chuyển nền Header sang bán trong suốt (backdrop-filter) để thấy nền abstract bên dưới */
+            background-color: rgba(224, 247, 250, 0.85); 
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(178, 235, 242, 0.5);
             display: flex;
-            align-items: center; /* Căn giữa theo chiều dọc */
-            justify-content: space-between; /* Đẩy ảnh sang phải, text sang trái */
-            gap: 25px;
-            margin-bottom: 25px;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 50px;
+            z-index: 1000;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.03);
         }
 
-        .avatar {
+        .logo {
+            font-size: 24px;
+            font-weight: 700;
+            color: #ff7043;
+            letter-spacing: 0.5px;
+            cursor: pointer;
+        }
+
+        .nav-menu { display: flex; gap: 30px; }
+        .nav-link {
+            font-size: 16px;
+            font-weight: 600;
+            color: #555;
+            position: relative;
+            padding: 5px 0;
+        }
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 3px;
+            bottom: 0;
+            left: 0;
+            background-color: #00e676;
+            transition: width 0.3s ease;
+            border-radius: 2px;
+        }
+        .nav-link:hover { color: #00c853; }
+        .nav-link:hover::after { width: 100%; }
+        .nav-link.active { color: #ff7043; }
+
+        /* --- CONTAINER CHUNG --- */
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 40px 20px;
+            position: relative;
+            z-index: 1; /* Đảm bảo nội dung nằm trên nền */
+        }
+
+        /* --- 1. HERO SECTION --- */
+        .hero-section {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+        .hero-avatar {
             width: 140px;
             height: 140px;
             border-radius: 50%;
             object-fit: cover;
-            /* Đảm bảo ảnh không bị co lại khi màn hình nhỏ */
-            flex-shrink: 0; 
-            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            border: 4px solid #fff;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+            margin-bottom: 15px;
         }
+        .hero-title { font-size: 32px; margin: 0; color: #333; }
+        .hero-subtitle { font-size: 18px; color: #666; }
 
-        h1 {
+        /* --- 2. ABOUT ME CARD --- */
+        .section-title {
             font-size: 28px;
-            margin: 0 0 5px;
-            font-weight: 500;
+            font-weight: 700;
+            color: #5e35b1;
+            margin-bottom: 30px;
+            position: relative;
+            display: inline-block;
         }
-
-        h2 {
-            font-size: 22px;
-            margin-top: 35px;
-            margin-bottom: 15px;
-            font-weight: 600;
-        }
-
-        p, li {
-            font-size: 16px;
-            line-height: 1.6;
-            margin-bottom: 10px;
-        }
-
-        ul {
-            padding-left: 20px;
+        .section-title::after {
+            content: '';
+            display: block;
+            width: 60%;
+            height: 4px;
+            background-color: #b39ddb;
             margin-top: 5px;
-            margin-bottom: 10px;
+            border-radius: 2px;
         }
 
-        hr {
-            border: none;
-            border-top: 1px solid #f0f0f0;
-            margin: 25px 0;
+        .about-card {
+            /* Giữ nền trắng để nổi bật trên nền Pastel */
+            background-color: rgba(255, 255, 255, 0.9); 
+            backdrop-filter: blur(5px);
+            border-radius: 20px;
+            border: 2px solid #d1c4e9; 
+            padding: 40px;
+            display: flex;
+            gap: 40px;
+            align-items: center;
+            box-shadow: 0 10px 30px rgba(94, 53, 177, 0.08);
+            margin-bottom: 80px;
+            position: relative;
+            overflow: hidden;
         }
 
-        a {
-            color: #0056d6;
-            text-decoration: none;
+        .about-img-wrapper {
+            flex: 0 0 250px;
+            position: relative;
         }
-
-        a:hover {
-            text-decoration: underline;
-        }
-
-        /* --- CSS BỔ SUNG ĐỂ GIỐNG ẢNH --- */
-
-        /* Phần Header Info: Để chứa tên và bio */
-        .header-info {
-            flex: 1; /* Chiếm phần còn lại của không gian */
-        }
-        
-        .header-links a {
-            margin-right: 10px;
-        }
-
-        /* CSS cho phần danh sách dự án (Projects) */
-        .paper-item {
-            display: grid;
-            grid-template-columns: 160px 1fr; /* Cột ảnh 160px, cột chữ tự co dãn */
-            gap: 20px;
-            padding: 20px 10px;
-            margin-bottom: 15px;
-            transition: background-color 0.3s;
-        }
-
-        /* Màu nền vàng nhạt cho mục nổi bật */
-        .paper-item.highlight {
-            background-color: #ffffd0;
-            box-shadow: 0 0 5px rgba(0,0,0,0.02);
-        }
-
-        .paper-item:hover {
-            background-color: #fcfcfc;
-        }
-        .paper-item.highlight:hover {
-            background-color: #ffffc0;
-        }
-
-        .paper-img {
+        .about-img {
             width: 100%;
-            border-radius: 4px;
+            border-radius: 20px;
             object-fit: cover;
-            /* Giả lập đổ bóng nhẹ cho ảnh thumbnail */
-            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-            aspect-ratio: 16/9;
+            border: 3px solid #b2dfdb; 
+            box-shadow: 10px 10px 0px #e0f2f1;
         }
 
-        .paper-content h3 {
-            margin: 0 0 5px;
+        .about-content { flex: 1; }
+        .about-text {
             font-size: 17px;
-            font-weight: 600;
-        }
-
-        .paper-content h3 a {
-            color: #000; /* Tiêu đề thường màu đen */
+            color: #444;
+            margin-bottom: 20px;
         }
         
-        .paper-desc {
-            font-size: 15px;
-            color: #444;
-            margin-bottom: 10px;
+        .about-list {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+            margin-top: 20px;
+        }
+        .about-item {
+            display: flex;
+            align-items: center;
+            font-weight: 500;
+            color: #555;
+        }
+        .about-icon {
+            width: 35px;
+            height: 35px;
+            background-color: #fff3e0;
+            color: #ff7043;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 12px;
+            font-size: 14px;
         }
 
-        .role-date {
+        /* --- 3. GALLERY DỰ ÁN & HOẠT ĐỘNG --- */
+        .projects-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-end;
+            margin-bottom: 30px;
+        }
+        
+        .filter-bar { display: flex; gap: 10px; }
+        .filter-btn {
+            padding: 8px 20px;
+            border-radius: 25px;
+            border: 1px solid #ddd;
+            background: rgba(255, 255, 255, 0.8); /* Nút hơi trong suốt */
+            color: #666;
+            cursor: pointer;
+            font-size: 14px;
+            font-weight: 600;
+            transition: all 0.3s;
+        }
+        .filter-btn:hover, .filter-btn.active {
+            background-color: #e0f7fa;
+            color: #00838f;
+            border-color: #b2ebf2;
+        }
+
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+            gap: 30px;
+        }
+
+        .project-card {
+            background: rgba(255, 255, 255, 0.95); /* Card nền trắng để nội dung dễ đọc */
+            border-radius: 16px;
+            overflow: hidden;
+            border: 1px solid rgba(255,255,255,0.6);
+            box-shadow: 0 4px 15px rgba(0,0,0,0.03);
+            transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275), box-shadow 0.3s;
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+        }
+
+        .project-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.08);
+        }
+
+        .card-thumb {
+            width: 100%;
+            height: 180px;
+            overflow: hidden;
+            position: relative;
+        }
+        .card-thumb img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+        .project-card:hover .card-thumb img { transform: scale(1.05); }
+        
+        .card-thumb::after {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: rgba(255, 255, 255, 0.1);
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+        .project-card:hover .card-thumb::after { opacity: 1; }
+
+        .card-body {
+            padding: 20px;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .project-category {
+            font-size: 12px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: #999;
+            margin-bottom: 5px;
+            font-weight: 700;
+        }
+
+        .card-title {
+            font-size: 18px;
+            font-weight: 700;
+            color: #333;
+            margin: 0 0 10px;
+        }
+
+        .card-desc {
             font-size: 14px;
             color: #666;
-            font-style: italic;
-            margin-bottom: 8px;
-            display: block;
+            margin-bottom: 15px;
+            flex-grow: 1;
         }
 
-        .contact-info {
-            font-size: 15px;
-            color: #555;
-            margin-top: 10px;
+        .card-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-top: auto;
+        }
+        .tag-pill {
+            padding: 4px 12px;
+            border-radius: 50px;
+            font-size: 12px;
+            font-weight: 600;
+        }
+        
+        .tag-blue { background-color: #e3f2fd; color: #1565c0; }
+        .tag-green { background-color: #e8f5e9; color: #2e7d32; }
+        .tag-purple { background-color: #f3e5f5; color: #7b1fa2; }
+        .tag-orange { background-color: #fff3e0; color: #e65100; }
+
+        /* --- 4. EDUCATION --- */
+        .edu-section { margin-bottom: 80px; }
+        .edu-item {
+            background: rgba(255, 255, 255, 0.9);
+            padding: 20px 25px;
+            border-left: 4px solid #ff7043;
+            border-radius: 4px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+            margin-bottom: 15px;
         }
 
-        /* Responsive cho Mobile */
-        @media (max-width: 600px) {
-            .header {
-                flex-direction: column-reverse; /* Đảo ngược để ảnh lên trên tên */
-                text-align: center;
-            }
-            
-            .header-info {
-                text-align: center;
-            }
+        /* --- CONTACT & FOOTER --- */
+        .footer {
+            text-align: center;
+            padding: 40px;
+            /* Footer cũng bán trong suốt */
+            background-color: rgba(255, 255, 255, 0.8);
+            margin-top: 60px;
+            border-top: 1px solid #eee;
+        }
+        .social-icons a {
+            font-size: 24px;
+            margin: 0 15px;
+            color: #bbb;
+        }
+        .social-icons a:hover { color: #ff7043; transform: scale(1.1); display: inline-block; }
 
-            .paper-item {
-                grid-template-columns: 1fr; /* Chuyển thành 1 cột */
-                text-align: left;
-            }
-            
-            .paper-img {
-                max-width: 200px; /* Giới hạn chiều rộng ảnh trên mobile */
-                margin-bottom: 10px;
-            }
+        /* --- Responsive --- */
+        @media (max-width: 768px) {
+            .top-header { padding: 0 20px; }
+            .nav-menu { display: none; }
+            .about-card { flex-direction: column; text-align: center; gap: 20px; }
+            .about-list { grid-template-columns: 1fr; text-align: left; }
+            .about-item { justify-content: center; }
+            .projects-grid { grid-template-columns: 1fr; }
         }
     </style>
 </head>
 <body>
 
+    <!-- LỚP NỀN TRỪU TƯỢNG (ABSTRACT BACKGROUND) -->
+    <div class="abstract-bg">
+        <div class="shape shape-1"></div> <!-- Mint -->
+        <div class="shape shape-2"></div> <!-- Pink -->
+        <div class="shape shape-3"></div> <!-- Lavender -->
+        <div class="shape shape-4"></div> <!-- Yellow -->
+        <div class="shape shape-5"></div> <!-- Blue Center -->
+    </div>
+
+    <!-- HEADER -->
+    <header class="top-header">
+        <div class="logo" onclick="window.scrollTo(0,0)">Dieu Linh Nguyen</div>
+        <nav class="nav-menu">
+            <a href="#about" class="nav-link">About Me</a>
+            <a href="#projects" class="nav-link">Activities & Projects</a>
+            <a href="#contact" class="nav-link">Contact</a>
+        </nav>
+    </header>
+
+    <!-- CONTAINER CHUNG -->
     <div class="container">
         
-        <!-- Header Section -->
-        <div class="header">
-            <div class="header-info">
-                <h1>Dieu Linh Nguyen</h1>
-                <p>
-                    Junior student at <strong>Foreign Trade University – Viet Nam</strong>.<br>
-                    TIN314 • Coding • Web Development
-                </p>
-                <div class="header-links">
-                    <a href="mailto:k62.2314740041@ftu.edu.vn">Email</a> / 
-                    <a href="https://facebook.com/linhh.linhh.05">Facebook</a>
+        <!-- HERO -->
+        <section class="hero-section">
+            <img src="images/dlinhxik.jpg" alt="Dieu Linh Nguyen" class="hero-avatar"
+                 onerror="this.src='https://placehold.co/150x150/ffccbc/white?text=Me';">
+            <h1 class="hero-title">Hello, I'm Dieu Linh! ✨</h1>
+            <p class="hero-subtitle">Junior Student • Web Developer • Data Enthusiast</p>
+        </section>
+
+        <!-- 1. ABOUT ME CARD -->
+        <section id="about">
+            <h2 class="section-title">About Me</h2>
+            <div class="about-card">
+                <div class="about-img-wrapper">
+                    <img src="images/dlinhxik.jpg" alt="About Dieu Linh" class="about-img"
+                         onerror="this.src='https://images.unsplash.com/photo-1522202176988-66273c2fd55f?q=80&w=400&auto=format&fit=crop';">
                 </div>
-            </div>
-            
-            <!-- Avatar Image -->
-            <img src="images/dlinhxik.jpg" 
-                 alt="Dieu Linh Nguyen" 
-                 class="avatar">
-        </div>
-
-        <!-- About Me Section -->
-        <h2>About Me</h2>
-        <p>
-            Hello! I'm Dieu Linh, a student interested in technology, coding, data, and digital tools. 
-            This website is a minimal academic-style page inspired by Jon Barron's layout.
-        </p>
-
-        <!-- Activities & Projects Section -->
-        <h2>Activities & Projects</h2>
-        <hr>
-
-        <!-- ITEM 1: Activity (Đã thay thế Project 1 cũ) -->
-        <div class="paper-item highlight">
-            <div class="paper-img-wrapper">
-                <!-- Sửa lại đường dẫn thành images (có s) -->
-                <img src="images/fyu.jpg" 
-                     alt="Foreign Trade University Youth Union" 
-                     class="paper-img"
-                     onerror="this.onerror=null; this.src='https://placehold.co/320x180/1e3a8a/white?text=FTU+Union';">
-            </div>
-            <div class="paper-content">
-                <h3><a href="#">Foreign Trade University Youth Union</a></h3>
                 
-                <!-- Dòng Role và Date -->
-                <span class="role-date">Organizing Committee Member | Sep 2023 - Dec 2024</span>
+                <div class="about-content">
+                    <p class="about-text">
+                        Hello! I'm Dieu Linh, a junior student majoring in <b>International Business Economics</b> at Foreign Trade University. I am passionate about technology, especially creating beautiful websites and data analysis.
+                    </p>
+                    <p class="about-text">
+                        My goal is to combine economic thinking with technical skills to create practical and valuable products.
+                    </p>
+
+                    <div class="about-list">
+                        <div class="about-item">
+                            <span class="about-icon"><i class="fas fa-university"></i></span>
+                            FTU K62 Student
+                        </div>
+                        <div class="about-item">
+                            <span class="about-icon"><i class="fas fa-code"></i></span>
+                            Web Development
+                        </div>
+                        <div class="about-item">
+                            <span class="about-icon"><i class="fas fa-chart-bar"></i></span>
+                            Data Analysis
+                        </div>
+                        <div class="about-item">
+                            <span class="about-icon"><i class="fas fa-language"></i></span>
+                            IELTS 7.0
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 2. EDUCATION -->
+        <section class="edu-section">
+            <h3 style="font-size: 20px; margin-bottom: 20px; color: #444;">Education</h3>
+            <div class="edu-item">
+                <div style="display:flex; justify-content:space-between; margin-bottom: 5px;">
+                    <strong style="font-size: 17px;">Foreign Trade University (FTU)</strong>
+                    <span style="color: #888;">2022 - Present</span>
+                </div>
+                <div style="color: #666;">Major: International Business Economics | GPA: 3.6/4.0</div>
+            </div>
+        </section>
+
+        <!-- 3. ACTIVITIES & PROJECTS GALLERY -->
+        <section id="projects">
+            <div class="projects-header">
+                <h2 class="section-title" style="color: #00838f; margin-bottom: 0;">Activities & Projects</h2>
+                <div class="filter-bar">
+                    <button class="filter-btn active">All</button>
+                    <button class="filter-btn">Coding</button>
+                    <button class="filter-btn">Activities</button>
+                </div>
+            </div>
+
+            <div class="projects-grid">
                 
-                <div class="paper-desc">
-                    <!-- Danh sách mô tả công việc -->
-                    <ul>
-                        <li>Coordinated Youth Union events; responsible for logistics, scheduling, and monitoring the progress of programs.</li>
-                        <li>Demonstrated strong teamwork skills, collaborating effectively with members to ensure smooth operations and deliver high-quality results.</li>
-                        <li>Enhanced time management and multitasking skills by strictly adhering to deadlines in a dynamic environment.</li>
-                    </ul>
+                <!-- Card 1 -->
+                <div class="project-card">
+                    <div class="card-thumb">
+                        <img src="images/fyu.jpg" alt="FTU Youth Union"
+                             onerror="this.src='https://placehold.co/600x400/1a237e/white?text=FTU+Youth+Union';">
+                    </div>
+                    <div class="card-body">
+                        <div class="project-category">Activity</div>
+                        <h3 class="card-title">FTU Youth Union</h3>
+                        <p class="card-desc">
+                            Coordinated events, managed logistics, and enhanced teamwork skills as an Organizing Committee Member.
+                        </p>
+                        <div class="card-tags">
+                            <span class="tag-pill tag-blue">Leadership</span>
+                            <span class="tag-pill tag-orange">Event Planning</span>
+                        </div>
+                    </div>
                 </div>
-            </div>
-        </div>
 
-        <!-- ITEM 2: Giữ nguyên Project cũ (TIN314) -->
-        <div class="paper-item">
-            <div class="paper-img-wrapper">
-                <img src="https://images.unsplash.com/photo-1555066931-4365d14bab8c?q=80&w=320&h=180&auto=format&fit=crop" 
-                     alt="TIN314 Exercises" 
-                     class="paper-img">
-            </div>
-            <div class="paper-content">
-                <h3><a href="#">TIN314 Exercises</a></h3>
-                <div class="paper-desc">
-                    Collection of coding tasks and small tools developed during the TIN314 course. Focuses on web development fundamentals and data handling.
+                <!-- Card 2 -->
+                <div class="project-card">
+                    <div class="card-thumb">
+                        <img src="https://images.unsplash.com/photo-1555066931-4365d14bab8c?q=80&w=600&auto=format&fit=crop" alt="Coding">
+                    </div>
+                    <div class="card-body">
+                        <div class="project-category">Coding Project</div>
+                        <h3 class="card-title">TIN314 Exercises</h3>
+                        <p class="card-desc">
+                            A collection of web tools and coding exercises demonstrating HTML, CSS, and JS fundamentals.
+                        </p>
+                        <div class="card-tags">
+                            <span class="tag-pill tag-purple">HTML/CSS</span>
+                            <span class="tag-pill tag-green">JavaScript</span>
+                        </div>
+                    </div>
                 </div>
-            </div>
-        </div>
 
-        <!-- Contact Section -->
-        <h2>Contact</h2>
-        <p class="contact-info">
-            Feel free to reach out to me via email or social media.<br>
-            <strong>Email:</strong> <a href="mailto:k62.2314740041@ftu.edu.vn">k62.2314740041@ftu.edu.vn</a><br>
-            <strong>Facebook:</strong> <a href="https://facebook.com/linhh.linhh.05">facebook.com/linhh.linhh.05</a>
-        </p>
+                <!-- Card 3 -->
+                <div class="project-card">
+                    <div class="card-thumb">
+                        <img src="https://images.unsplash.com/photo-1467232004584-a241de8bcf5d?q=80&w=600&auto=format&fit=crop" alt="Portfolio">
+                    </div>
+                    <div class="card-body">
+                        <div class="project-category">Design</div>
+                        <h3 class="card-title">Personal Portfolio</h3>
+                        <p class="card-desc">
+                            Designing a minimalist yet colorful personal brand website using modern CSS techniques.
+                        </p>
+                        <div class="card-tags">
+                            <span class="tag-pill tag-blue">UI/UX</span>
+                            <span class="tag-pill tag-purple">Frontend</span>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- FOOTER / CONTACT -->
+        <footer id="contact" class="footer">
+            <h2 style="margin-bottom: 20px;">Let's Connect! 🚀</h2>
+            <p style="margin-bottom: 30px; color: #666;">
+                Feel free to reach out for collaborations or just a friendly hello.
+            </p>
+            <div class="social-icons">
+                <a href="mailto:k62.2314740041@ftu.edu.vn"><i class="fas fa-envelope"></i></a>
+                <a href="https://facebook.com/linhh.linhh.05"><i class="fab fa-facebook"></i></a>
+                <a href="#"><i class="fab fa-linkedin"></i></a>
+                <a href="#"><i class="fab fa-github"></i></a>
+            </div>
+            <p style="margin-top: 30px; font-size: 13px; color: #999;">© 2024 Dieu Linh Nguyen. Built with ❤️.</p>
+        </footer>
 
     </div>
 
