@@ -191,7 +191,15 @@
             margin-bottom: 15px;
         }
         .hero-title { font-size: 32px; margin: 0; color: #333; }
-        .hero-subtitle { font-size: 18px; color: #666; }
+        .hero-subtitle { font-size: 18px; color: #666; margin-bottom: 15px; }
+        /* Style cho đoạn mô tả thêm mới */
+        .hero-text {
+            font-size: 16px;
+            color: #555;
+            max-width: 600px;
+            margin: 0 auto;
+            line-height: 1.6;
+        }
 
         /* --- 2. ABOUT ME CARD --- */
         .section-title {
@@ -459,8 +467,14 @@
         <section class="hero-section">
             <img src="images/dlinhxik.jpg" alt="Dieu Linh Nguyen" class="hero-avatar"
                  onerror="this.src='https://placehold.co/150x150/ffccbc/white?text=Me';">
-            <h1 class="hero-title">Hello, I'm Dieu Linh! ✨</h1>
+            <!-- Thay ✨ bằng 🌸 -->
+            <h1 class="hero-title">Hello, I'm Dieu Linh! 🌸</h1>
             <p class="hero-subtitle">Junior Student • Web Developer • Data Enthusiast</p>
+            <!-- Thêm thông tin mô tả chi tiết -->
+            <p class="hero-text">
+                Bridging the gap between <b>International Economics</b> and <b>Technology</b>.<br>
+                I am passionate about building user-centric websites and analyzing data to drive decision-making.
+            </p>
         </section>
 
         <!-- 1. ABOUT ME CARD -->
